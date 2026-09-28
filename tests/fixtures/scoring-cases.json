@@ -1,0 +1,2623 @@
+{
+  "version": 1,
+  "defaults": {
+    "roundWind": "E",
+    "dealerSeat": "E",
+    "base": 30,
+    "perTai": 10,
+    "notation": "數字+m/p/s；E S W N C F P = 東南西北中發白；f1-f8 = 春夏秋冬梅蘭竹菊"
+  },
+  "cases": [
+    {
+      "id": "B01",
+      "group": "基本",
+      "title": "放槍、無台",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 30,
+        "W": -30,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "B02",
+      "group": "基本",
+      "title": "門清放槍",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456m789m234p678sNN",
+      "melds": [],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "門清",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": 0,
+        "S": 40,
+        "W": -40,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "B03",
+      "group": "基本",
+      "title": "自摸（有吃牌）",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "自摸",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": -50,
+        "S": 130,
+        "W": -40,
+        "N": -40
+      },
+      "extraWins": []
+    },
+    {
+      "id": "B04",
+      "group": "基本",
+      "title": "門清自摸",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "123m456m789m234p678sNN",
+      "melds": [],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "門清自摸",
+          "tai": 3
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 3,
+      "expectedDelta": {
+        "E": -70,
+        "S": 190,
+        "W": -60,
+        "N": -60
+      },
+      "extraWins": []
+    },
+    {
+      "id": "D01",
+      "group": "莊家與連莊",
+      "title": "閒家胡、莊家放槍",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "E",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [],
+      "note": "莊家放槍要多付莊家 1 台",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": -40,
+        "S": 40,
+        "W": 0,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "D02",
+      "group": "莊家與連莊",
+      "title": "莊家胡、連 2 拉 2",
+      "winner": "E",
+      "winType": "discard",
+      "discarder": "S",
+      "dealerStreak": 2,
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [],
+      "note": "莊家 1 + 連莊 2×2 = 5 台，由放槍者付",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 80,
+        "S": -80,
+        "W": 0,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "D03",
+      "group": "莊家與連莊",
+      "title": "莊家自摸、連 1",
+      "winner": "E",
+      "winType": "self",
+      "dealerStreak": 1,
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "自摸",
+          "tai": 1
+        }
+      ],
+      "note": "三家都付 莊家 1 + 連莊 2 + 自摸 1",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": 210,
+        "S": -70,
+        "W": -70,
+        "N": -70
+      },
+      "extraWins": []
+    },
+    {
+      "id": "D04",
+      "group": "莊家與連莊",
+      "title": "閒家自摸、莊家連 3",
+      "winner": "S",
+      "winType": "self",
+      "dealerStreak": 3,
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "自摸",
+          "tai": 1
+        }
+      ],
+      "note": "只有莊家多付 莊家 1 + 連莊 6",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": -110,
+        "S": 190,
+        "W": -40,
+        "N": -40
+      },
+      "extraWins": []
+    },
+    {
+      "id": "D05",
+      "group": "莊家與連莊",
+      "title": "閒家胡莊家、莊家連 2",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "E",
+      "dealerStreak": 2,
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [],
+      "note": "莊家放槍多付 1 + 4 = 5 台",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": -80,
+        "S": 80,
+        "W": 0,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "D06",
+      "group": "莊家與連莊",
+      "title": "閒家互相放槍、莊家連 2",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "dealerStreak": 2,
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [],
+      "note": "莊家不在其中，不計莊家與連莊",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 30,
+        "W": -30,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "H01",
+      "group": "字牌",
+      "title": "圈風＋門風刻（南風圈、南家）",
+      "roundWind": "S",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456m789p345s99s",
+      "melds": [
+        [
+          "pon",
+          "SSS"
+        ]
+      ],
+      "winTile": "3s",
+      "tai": [
+        {
+          "name": "圈風刻",
+          "tai": 1
+        },
+        {
+          "name": "門風刻",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 2,
+      "expectedDelta": {
+        "E": 0,
+        "S": 50,
+        "W": -50,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "H02",
+      "group": "字牌",
+      "title": "非自己風的風刻不計台",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456m789p345s99s",
+      "melds": [
+        [
+          "pon",
+          "NNN"
+        ]
+      ],
+      "winTile": "3s",
+      "tai": [],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 30,
+        "W": -30,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "H03",
+      "group": "字牌",
+      "title": "兩組三元牌刻",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456p345s99s",
+      "melds": [
+        [
+          "pon",
+          "CCC"
+        ],
+        [
+          "pon",
+          "FFF"
+        ]
+      ],
+      "winTile": "3s",
+      "tai": [
+        {
+          "name": "三元牌刻 中",
+          "tai": 1
+        },
+        {
+          "name": "三元牌刻 發",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 2,
+      "expectedDelta": {
+        "E": 0,
+        "S": 50,
+        "W": -50,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "F01",
+      "group": "花牌",
+      "title": "正花 2 張（南家：夏、蘭）",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "flowers": [
+        "f1",
+        "f2",
+        "f6"
+      ],
+      "tai": [
+        {
+          "name": "正花 夏",
+          "tai": 1
+        },
+        {
+          "name": "正花 蘭",
+          "tai": 1
+        }
+      ],
+      "note": "春不是南家的正花",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 2,
+      "expectedDelta": {
+        "E": 0,
+        "S": 50,
+        "W": -50,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "F02",
+      "group": "花牌",
+      "title": "花槓（春夏秋冬）＋正花",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "flowers": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "tai": [
+        {
+          "name": "花槓",
+          "tai": 2
+        },
+        {
+          "name": "正花 夏",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 3,
+      "expectedDelta": {
+        "E": 0,
+        "S": 60,
+        "W": -60,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "F03",
+      "group": "花牌",
+      "title": "東家正花（春、梅）",
+      "winner": "E",
+      "winType": "discard",
+      "discarder": "S",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "flowers": [
+        "f1",
+        "f5"
+      ],
+      "tai": [
+        {
+          "name": "正花 春",
+          "tai": 1
+        },
+        {
+          "name": "正花 梅",
+          "tai": 1
+        }
+      ],
+      "note": "另加莊家 1 台",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 2,
+      "expectedDelta": {
+        "E": 60,
+        "S": -60,
+        "W": 0,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "T01",
+      "group": "聽牌型",
+      "title": "獨聽：單吊",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "456m789m234p567sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "N",
+      "tai": [
+        {
+          "name": "獨聽",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": 0,
+        "S": 40,
+        "W": -40,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "T02",
+      "group": "聽牌型",
+      "title": "獨聽：邊張（12 聽 3）",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "456m789m123p567sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "3p",
+      "tai": [
+        {
+          "name": "獨聽",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": 0,
+        "S": 40,
+        "W": -40,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "T03",
+      "group": "聽牌型",
+      "title": "獨聽：中洞（13 聽 2）",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "456m789m123p567sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "2p",
+      "tai": [
+        {
+          "name": "獨聽",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": 0,
+        "S": 40,
+        "W": -40,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "T04",
+      "group": "聽牌型",
+      "title": "兩面聽不算獨聽",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [],
+      "note": "78 條聽 6、9 條",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 30,
+        "W": -30,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "T05",
+      "group": "聽牌型",
+      "title": "對碰（雙碰）不算獨聽",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "777p33s456m789m234p",
+      "melds": [
+        [
+          "chi",
+          "123s"
+        ]
+      ],
+      "winTile": "7p",
+      "tai": [],
+      "note": "聽 7 筒與 3 條",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 30,
+        "W": -30,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "T06",
+      "group": "聽牌型",
+      "title": "咪幾：前 8 張出牌內報聽",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456m789p234s678sNN",
+      "melds": [],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "門清",
+          "tai": 1
+        },
+        {
+          "name": "咪幾",
+          "tai": 4
+        }
+      ],
+      "note": "全桌前 8 張出牌內報聽、期間無人吃碰槓；須按「聽」才算",
+      "context": {
+        "miji": true
+      },
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 5,
+      "expectedDelta": {
+        "E": 0,
+        "S": 80,
+        "W": -80,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "T07",
+      "group": "聽牌型",
+      "title": "天聽：莊家第一張牌即報聽",
+      "winner": "E",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456m789p234s678sNN",
+      "melds": [],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "門清",
+          "tai": 1
+        },
+        {
+          "name": "天聽",
+          "tai": 8
+        }
+      ],
+      "note": "另加莊家 1 台",
+      "context": {
+        "tianting": true
+      },
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 9,
+      "expectedDelta": {
+        "E": 130,
+        "S": 0,
+        "W": -130,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "T08",
+      "group": "聽牌型",
+      "title": "天聽不再疊加咪幾",
+      "winner": "E",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456m789p234s678sNN",
+      "melds": [],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "門清",
+          "tai": 1
+        },
+        {
+          "name": "天聽",
+          "tai": 8
+        }
+      ],
+      "note": "天聽同時符合咪幾條件，只算天聽；另加莊家 1 台",
+      "context": {
+        "tianting": true,
+        "miji": true
+      },
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 9,
+      "expectedDelta": {
+        "E": 130,
+        "S": 0,
+        "W": -130,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "P01",
+      "group": "平胡",
+      "title": "平胡＋門清",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456m789p234s678s55p",
+      "melds": [],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "門清",
+          "tai": 1
+        },
+        {
+          "name": "平胡",
+          "tai": 2
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 3,
+      "expectedDelta": {
+        "E": 0,
+        "S": 60,
+        "W": -60,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "P02",
+      "group": "平胡",
+      "title": "有花就不是平胡",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456m789p234s678s55p",
+      "melds": [],
+      "winTile": "6s",
+      "flowers": [
+        "f3"
+      ],
+      "tai": [
+        {
+          "name": "門清",
+          "tai": 1
+        }
+      ],
+      "note": "秋不是南家正花，所以也沒有正花台",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": 0,
+        "S": 40,
+        "W": -40,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "P03",
+      "group": "平胡",
+      "title": "自摸就不是平胡",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "123m456m789p234s678s55p",
+      "melds": [],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "門清自摸",
+          "tai": 3
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 3,
+      "expectedDelta": {
+        "E": -70,
+        "S": 190,
+        "W": -60,
+        "N": -60
+      },
+      "extraWins": []
+    },
+    {
+      "id": "P04",
+      "group": "平胡",
+      "title": "獨聽就不是平胡",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456m789p234s789s55p",
+      "melds": [],
+      "winTile": "8s",
+      "tai": [
+        {
+          "name": "門清",
+          "tai": 1
+        },
+        {
+          "name": "獨聽",
+          "tai": 1
+        }
+      ],
+      "note": "79 條中洞聽 8 條",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 2,
+      "expectedDelta": {
+        "E": 0,
+        "S": 50,
+        "W": -50,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "P05",
+      "group": "平胡",
+      "title": "有字牌就不是平胡",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456m789m234p678sNN",
+      "melds": [],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "門清",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": 0,
+        "S": 40,
+        "W": -40,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "K01",
+      "group": "刻子與暗刻",
+      "title": "碰碰胡",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "777p33s",
+      "melds": [
+        [
+          "pon",
+          "222m"
+        ],
+        [
+          "pon",
+          "555p"
+        ],
+        [
+          "pon",
+          "888s"
+        ],
+        [
+          "pon",
+          "999m"
+        ]
+      ],
+      "winTile": "7p",
+      "tai": [
+        {
+          "name": "碰碰胡",
+          "tai": 4
+        }
+      ],
+      "note": "7 筒由放槍完成，不算暗刻",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 4,
+      "expectedDelta": {
+        "E": 0,
+        "S": 70,
+        "W": -70,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "K02",
+      "group": "刻子與暗刻",
+      "title": "碰碰胡＋三暗刻＋單吊",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "111s999s777pNN",
+      "melds": [
+        [
+          "pon",
+          "222m"
+        ],
+        [
+          "pon",
+          "555p"
+        ]
+      ],
+      "winTile": "N",
+      "tai": [
+        {
+          "name": "碰碰胡",
+          "tai": 4
+        },
+        {
+          "name": "三暗刻",
+          "tai": 2
+        },
+        {
+          "name": "獨聽",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 7,
+      "expectedDelta": {
+        "E": 0,
+        "S": 100,
+        "W": -100,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "K03",
+      "group": "刻子與暗刻",
+      "title": "放槍完成的刻子不算暗刻",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "111m555m999p22s777s",
+      "melds": [
+        [
+          "chi",
+          "123p"
+        ]
+      ],
+      "winTile": "7s",
+      "tai": [
+        {
+          "name": "三暗刻",
+          "tai": 2
+        }
+      ],
+      "note": "同一副牌若自摸 7 條，就變成四暗刻（見 K04）",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 2,
+      "expectedDelta": {
+        "E": 0,
+        "S": 50,
+        "W": -50,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "K04",
+      "group": "刻子與暗刻",
+      "title": "同 K03 但自摸：四暗刻",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "111m555m999p22s777s",
+      "melds": [
+        [
+          "chi",
+          "123p"
+        ]
+      ],
+      "winTile": "7s",
+      "tai": [
+        {
+          "name": "四暗刻",
+          "tai": 5
+        },
+        {
+          "name": "自摸",
+          "tai": 1
+        }
+      ],
+      "note": "只取最高的暗刻台數",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 6,
+      "expectedDelta": {
+        "E": -100,
+        "S": 280,
+        "W": -90,
+        "N": -90
+      },
+      "extraWins": []
+    },
+    {
+      "id": "K05",
+      "group": "刻子與暗刻",
+      "title": "四暗刻＋碰碰胡＋自摸單吊",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "111s999s777p444mNN",
+      "melds": [
+        [
+          "pon",
+          "222m"
+        ]
+      ],
+      "winTile": "N",
+      "tai": [
+        {
+          "name": "四暗刻",
+          "tai": 5
+        },
+        {
+          "name": "碰碰胡",
+          "tai": 4
+        },
+        {
+          "name": "自摸",
+          "tai": 1
+        },
+        {
+          "name": "獨聽",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 11,
+      "expectedDelta": {
+        "E": -150,
+        "S": 430,
+        "W": -140,
+        "N": -140
+      },
+      "extraWins": []
+    },
+    {
+      "id": "K06",
+      "group": "刻子與暗刻",
+      "title": "五暗刻門清自摸",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "111m555m999p222s777sNN",
+      "melds": [],
+      "winTile": "N",
+      "tai": [
+        {
+          "name": "五暗刻",
+          "tai": 8
+        },
+        {
+          "name": "碰碰胡",
+          "tai": 4
+        },
+        {
+          "name": "門清自摸",
+          "tai": 3
+        },
+        {
+          "name": "獨聽",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 16,
+      "expectedDelta": {
+        "E": -200,
+        "S": 580,
+        "W": -190,
+        "N": -190
+      },
+      "extraWins": []
+    },
+    {
+      "id": "K07",
+      "group": "刻子與暗刻",
+      "title": "暗槓仍算門清",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "ankan",
+          "5555s"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "門清",
+          "tai": 1
+        }
+      ],
+      "note": "只有 1 組暗刻（暗槓），不計暗刻台",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": 0,
+        "S": 40,
+        "W": -40,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "L01",
+      "group": "一色與大牌",
+      "title": "混一色",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456m678m789m99m",
+      "melds": [
+        [
+          "pon",
+          "NNN"
+        ]
+      ],
+      "winTile": "8m",
+      "tai": [
+        {
+          "name": "混一色",
+          "tai": 4
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 4,
+      "expectedDelta": {
+        "E": 0,
+        "S": 70,
+        "W": -70,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "L02",
+      "group": "一色與大牌",
+      "title": "清一色門清自摸",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "123p456p678p789p234p55p",
+      "melds": [],
+      "winTile": "1p",
+      "tai": [
+        {
+          "name": "清一色",
+          "tai": 8
+        },
+        {
+          "name": "門清自摸",
+          "tai": 3
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 11,
+      "expectedDelta": {
+        "E": -150,
+        "S": 430,
+        "W": -140,
+        "N": -140
+      },
+      "extraWins": []
+    },
+    {
+      "id": "L03",
+      "group": "一色與大牌",
+      "title": "小三元（另計兩組三元牌刻）",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456p789mPP",
+      "melds": [
+        [
+          "pon",
+          "CCC"
+        ],
+        [
+          "pon",
+          "FFF"
+        ]
+      ],
+      "winTile": "9m",
+      "tai": [
+        {
+          "name": "小三元",
+          "tai": 4
+        },
+        {
+          "name": "三元牌刻 中",
+          "tai": 1
+        },
+        {
+          "name": "三元牌刻 發",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 6,
+      "expectedDelta": {
+        "E": 0,
+        "S": 90,
+        "W": -90,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "L04",
+      "group": "一色與大牌",
+      "title": "大三元（不另計三元牌刻）",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m789m55p",
+      "melds": [
+        [
+          "pon",
+          "CCC"
+        ],
+        [
+          "pon",
+          "FFF"
+        ],
+        [
+          "pon",
+          "PPP"
+        ]
+      ],
+      "winTile": "9m",
+      "tai": [
+        {
+          "name": "大三元",
+          "tai": 8
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 8,
+      "expectedDelta": {
+        "E": 0,
+        "S": 110,
+        "W": -110,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "L05",
+      "group": "一色與大牌",
+      "title": "小四喜＋混一色",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m789mNN",
+      "melds": [
+        [
+          "pon",
+          "EEE"
+        ],
+        [
+          "pon",
+          "SSS"
+        ],
+        [
+          "pon",
+          "WWW"
+        ]
+      ],
+      "winTile": "9m",
+      "tai": [
+        {
+          "name": "小四喜",
+          "tai": 8
+        },
+        {
+          "name": "混一色",
+          "tai": 4
+        }
+      ],
+      "note": "不另計圈風刻、門風刻",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 12,
+      "expectedDelta": {
+        "E": 0,
+        "S": 150,
+        "W": -150,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "L06",
+      "group": "一色與大牌",
+      "title": "大四喜＋混一色＋邊張",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m55m",
+      "melds": [
+        [
+          "pon",
+          "EEE"
+        ],
+        [
+          "pon",
+          "SSS"
+        ],
+        [
+          "pon",
+          "WWW"
+        ],
+        [
+          "pon",
+          "NNN"
+        ]
+      ],
+      "winTile": "3m",
+      "tai": [
+        {
+          "name": "大四喜",
+          "tai": 16
+        },
+        {
+          "name": "混一色",
+          "tai": 4
+        },
+        {
+          "name": "獨聽",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 21,
+      "expectedDelta": {
+        "E": 0,
+        "S": 240,
+        "W": -240,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "L07",
+      "group": "一色與大牌",
+      "title": "字一色＋小四喜＋碰碰胡",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "WWWNN",
+      "melds": [
+        [
+          "pon",
+          "EEE"
+        ],
+        [
+          "pon",
+          "SSS"
+        ],
+        [
+          "pon",
+          "CCC"
+        ],
+        [
+          "pon",
+          "FFF"
+        ]
+      ],
+      "winTile": "N",
+      "tai": [
+        {
+          "name": "字一色",
+          "tai": 16
+        },
+        {
+          "name": "小四喜",
+          "tai": 8
+        },
+        {
+          "name": "碰碰胡",
+          "tai": 4
+        },
+        {
+          "name": "三元牌刻 中",
+          "tai": 1
+        },
+        {
+          "name": "三元牌刻 發",
+          "tai": 1
+        },
+        {
+          "name": "獨聽",
+          "tai": 1
+        }
+      ],
+      "note": "西西西是暗刻但只有 1 組；字一色不另計混一色",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 31,
+      "expectedDelta": {
+        "E": 0,
+        "S": 340,
+        "W": -340,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "L08",
+      "group": "一色與大牌",
+      "title": "嚦咕嚦咕放槍",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "11m55m99m22p77p33s88sNNN",
+      "melds": [],
+      "winTile": "N",
+      "tai": [
+        {
+          "name": "嚦咕嚦咕",
+          "tai": 8
+        }
+      ],
+      "note": "胡前是 8 對，可胡任何一對，不算獨聽；不另計門清",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 8,
+      "expectedDelta": {
+        "E": 0,
+        "S": 110,
+        "W": -110,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "L09",
+      "group": "一色與大牌",
+      "title": "嚦咕嚦咕＋清一色＋自摸",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "11s22s44s55s66s77s88s999s",
+      "melds": [],
+      "winTile": "9s",
+      "tai": [
+        {
+          "name": "嚦咕嚦咕",
+          "tai": 8
+        },
+        {
+          "name": "清一色",
+          "tai": 8
+        },
+        {
+          "name": "自摸",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 17,
+      "expectedDelta": {
+        "E": -210,
+        "S": 610,
+        "W": -200,
+        "N": -200
+      },
+      "extraWins": []
+    },
+    {
+      "id": "X01",
+      "group": "特殊胡",
+      "title": "搶槓",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "搶槓",
+          "tai": 1
+        }
+      ],
+      "note": "西家把碰過的 6 條加槓，南家搶這張 6 條胡；由西家付",
+      "context": {
+        "robKong": true
+      },
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": 0,
+        "S": 40,
+        "W": -40,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "X02",
+      "group": "特殊胡",
+      "title": "暗槓不能被搶",
+      "expectNoWin": true,
+      "note": "西家暗槓 5 筒，南家聽 5 筒也不能胡；對局繼續",
+      "context": {},
+      "kind": "process",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 0,
+        "W": 0,
+        "N": 0
+      },
+      "tai": [],
+      "extraWins": []
+    },
+    {
+      "id": "X03",
+      "group": "特殊胡",
+      "title": "槓上開花（加槓）",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "456m789m234s678sNN",
+      "melds": [
+        [
+          "kakan",
+          "7777p"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "槓上開花",
+          "tai": 1
+        },
+        {
+          "name": "自摸",
+          "tai": 1
+        }
+      ],
+      "note": "加槓、暗槓補牌可以自摸；大明槓（槓別人打的牌）補牌不能自摸，所以沒有大明槓的槓上開花",
+      "context": {
+        "kongDraw": true
+      },
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 2,
+      "expectedDelta": {
+        "E": -60,
+        "S": 160,
+        "W": -50,
+        "N": -50
+      },
+      "extraWins": []
+    },
+    {
+      "id": "X04",
+      "group": "特殊胡",
+      "title": "槓上開花（暗槓，仍門清）",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "456m789m234s678sNN",
+      "melds": [
+        [
+          "ankan",
+          "7777p"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "槓上開花",
+          "tai": 1
+        },
+        {
+          "name": "門清自摸",
+          "tai": 3
+        }
+      ],
+      "context": {
+        "kongDraw": true
+      },
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 4,
+      "expectedDelta": {
+        "E": -80,
+        "S": 220,
+        "W": -70,
+        "N": -70
+      },
+      "extraWins": []
+    },
+    {
+      "id": "X05",
+      "group": "特殊胡",
+      "title": "海底撈月",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "海底撈月",
+          "tai": 1
+        },
+        {
+          "name": "自摸",
+          "tai": 1
+        }
+      ],
+      "context": {
+        "lastTile": true
+      },
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 2,
+      "expectedDelta": {
+        "E": -60,
+        "S": 160,
+        "W": -50,
+        "N": -50
+      },
+      "extraWins": []
+    },
+    {
+      "id": "X06",
+      "group": "特殊胡",
+      "title": "河底撈魚",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "河底撈魚",
+          "tai": 1
+        }
+      ],
+      "context": {
+        "lastTile": true
+      },
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": 0,
+        "S": 40,
+        "W": -40,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "X07",
+      "group": "特殊胡",
+      "title": "半求（自摸單吊）",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "NN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ],
+        [
+          "chi",
+          "456m"
+        ],
+        [
+          "chi",
+          "789p"
+        ],
+        [
+          "chi",
+          "234s"
+        ],
+        [
+          "chi",
+          "567s"
+        ]
+      ],
+      "winTile": "N",
+      "tai": [
+        {
+          "name": "半求",
+          "tai": 1
+        },
+        {
+          "name": "自摸",
+          "tai": 1
+        }
+      ],
+      "note": "半求、全求不另計獨聽",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 2,
+      "expectedDelta": {
+        "E": -60,
+        "S": 160,
+        "W": -50,
+        "N": -50
+      },
+      "extraWins": []
+    },
+    {
+      "id": "X08",
+      "group": "特殊胡",
+      "title": "全求（胡他家單吊）",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "NN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ],
+        [
+          "chi",
+          "456m"
+        ],
+        [
+          "chi",
+          "789p"
+        ],
+        [
+          "chi",
+          "234s"
+        ],
+        [
+          "chi",
+          "567s"
+        ]
+      ],
+      "winTile": "N",
+      "tai": [
+        {
+          "name": "全求",
+          "tai": 2
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 2,
+      "expectedDelta": {
+        "E": 0,
+        "S": 50,
+        "W": -50,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "X09",
+      "group": "特殊胡",
+      "title": "天胡",
+      "winner": "E",
+      "winType": "self",
+      "noDealerTai": true,
+      "concealed": "123m456m789m234p678sNN",
+      "melds": [],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "天胡",
+          "tai": 24
+        }
+      ],
+      "note": "固定 24 台，不另計莊家與其他台",
+      "context": {
+        "heavenly": true
+      },
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 24,
+      "expectedDelta": {
+        "E": 810,
+        "S": -270,
+        "W": -270,
+        "N": -270
+      },
+      "extraWins": []
+    },
+    {
+      "id": "X10",
+      "group": "特殊胡",
+      "title": "地胡",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "123m456m789m234p678sNN",
+      "melds": [],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "地胡",
+          "tai": 16
+        },
+        {
+          "name": "門清自摸",
+          "tai": 3
+        }
+      ],
+      "note": "地胡可與其他台疊加；莊家另付莊家 1 台",
+      "context": {
+        "earthly": true
+      },
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 19,
+      "expectedDelta": {
+        "E": -230,
+        "S": 670,
+        "W": -220,
+        "N": -220
+      },
+      "extraWins": []
+    },
+    {
+      "id": "Y01",
+      "group": "豹子加倍",
+      "title": "豹子局門清自摸",
+      "winner": "S",
+      "winType": "self",
+      "leopard": true,
+      "concealed": "123m456m789m234p678sNN",
+      "melds": [],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "門清自摸",
+          "tai": 3
+        }
+      ],
+      "note": "（底 + 台）算完後整筆加倍；莊家的 1 台也在內",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 3,
+      "expectedDelta": {
+        "E": -140,
+        "S": 380,
+        "W": -120,
+        "N": -120
+      },
+      "extraWins": []
+    },
+    {
+      "id": "Y02",
+      "group": "豹子加倍",
+      "title": "豹子局單吊放槍",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "leopard": true,
+      "concealed": "456m789m234p567sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "N",
+      "tai": [
+        {
+          "name": "獨聽",
+          "tai": 1
+        }
+      ],
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": 0,
+        "S": 80,
+        "W": -80,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "Y03",
+      "group": "豹子加倍",
+      "title": "豹子局莊家胡、連 1",
+      "winner": "E",
+      "winType": "discard",
+      "discarder": "S",
+      "leopard": true,
+      "dealerStreak": 1,
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [],
+      "note": "(底 30 + (莊家 1 + 連莊 2) × 10) × 2 = 120",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 120,
+        "S": -120,
+        "W": 0,
+        "N": 0
+      },
+      "extraWins": []
+    },
+    {
+      "id": "G01",
+      "group": "八仙過海與七搶一",
+      "title": "八仙過海，之後同一人門清自摸",
+      "winner": "S",
+      "winType": "self",
+      "concealed": "123m456m789m234p678sNN",
+      "melds": [],
+      "winTile": "6s",
+      "flowers": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8"
+      ],
+      "flowerBonus": [
+        {
+          "kind": "八仙過海",
+          "to": "S"
+        }
+      ],
+      "tai": [
+        {
+          "name": "門清自摸",
+          "tai": 3
+        }
+      ],
+      "note": "集滿時先向三家各收 8 台；之後胡牌不再計正花、花槓",
+      "context": {
+        "flowerBonusTaken": true
+      },
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 3,
+      "expectedDelta": {
+        "E": -150,
+        "S": 430,
+        "W": -140,
+        "N": -140
+      },
+      "extraWins": []
+    },
+    {
+      "id": "G02",
+      "group": "八仙過海與七搶一",
+      "title": "八仙過海，之後流局",
+      "flowers": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8"
+      ],
+      "flowerBonus": [
+        {
+          "kind": "八仙過海",
+          "to": "S"
+        }
+      ],
+      "note": "流局不查聽，花牌收分照算；莊家連莊",
+      "context": {},
+      "kind": "flowerBonus",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": -80,
+        "S": 240,
+        "W": -80,
+        "N": -80
+      },
+      "tai": [],
+      "extraWins": []
+    },
+    {
+      "id": "G03",
+      "group": "八仙過海與七搶一",
+      "title": "八仙過海，之後別人胡",
+      "winner": "W",
+      "winType": "discard",
+      "discarder": "N",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "flowerBonus": [
+        {
+          "kind": "八仙過海",
+          "to": "S"
+        }
+      ],
+      "tai": [],
+      "note": "南家先收 8 台，北家再放槍給西家",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": -80,
+        "S": 240,
+        "W": -50,
+        "N": -110
+      },
+      "extraWins": []
+    },
+    {
+      "id": "G04",
+      "group": "八仙過海與七搶一",
+      "title": "豹子局八仙過海",
+      "leopard": true,
+      "flowerBonus": [
+        {
+          "kind": "八仙過海",
+          "to": "S"
+        }
+      ],
+      "note": "每家付 16 台",
+      "context": {},
+      "kind": "flowerBonus",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": -160,
+        "S": 480,
+        "W": -160,
+        "N": -160
+      },
+      "tai": [],
+      "extraWins": []
+    },
+    {
+      "id": "G05",
+      "group": "八仙過海與七搶一",
+      "title": "七搶一",
+      "flowerBonus": [
+        {
+          "kind": "七搶一",
+          "to": "S",
+          "from": "W"
+        }
+      ],
+      "note": "南家 7 張、西家 1 張，只由西家賠 8 台",
+      "context": {},
+      "kind": "flowerBonus",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 80,
+        "W": -80,
+        "N": 0
+      },
+      "tai": [],
+      "extraWins": []
+    },
+    {
+      "id": "G06",
+      "group": "八仙過海與七搶一",
+      "title": "8 張花分在三家不成立",
+      "expectNoWin": true,
+      "note": "南家 6 張、西家 1 張、北家 1 張：沒有八仙過海也沒有七搶一",
+      "context": {},
+      "kind": "process",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 0,
+        "W": 0,
+        "N": 0
+      },
+      "tai": [],
+      "extraWins": []
+    },
+    {
+      "id": "G07",
+      "group": "八仙過海與七搶一",
+      "title": "開局補花就湊齊八仙過海",
+      "flowerBonus": [
+        {
+          "kind": "八仙過海",
+          "to": "S"
+        }
+      ],
+      "note": "當場收分，照常開始打牌",
+      "context": {},
+      "kind": "flowerBonus",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": -80,
+        "S": 240,
+        "W": -80,
+        "N": -80
+      },
+      "tai": [],
+      "extraWins": []
+    },
+    {
+      "id": "R01",
+      "group": "宣告與流程",
+      "title": "一炮雙響",
+      "winner": "S",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "456m789m234p678sNN",
+      "melds": [
+        [
+          "chi",
+          "123m"
+        ]
+      ],
+      "winTile": "6s",
+      "tai": [],
+      "extraWins": [
+        {
+          "winner": "N",
+          "tai": [
+            {
+              "name": "門清",
+              "tai": 1
+            }
+          ]
+        }
+      ],
+      "note": "房間設定為一炮多響：西家分別付南家、北家（北家門清 1 台）",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 30,
+        "W": -70,
+        "N": 40
+      }
+    },
+    {
+      "id": "R02",
+      "group": "宣告與流程",
+      "title": "截胡",
+      "winner": "N",
+      "winType": "discard",
+      "discarder": "W",
+      "concealed": "123m456m789m234p678sNN",
+      "melds": [],
+      "winTile": "6s",
+      "tai": [
+        {
+          "name": "門清",
+          "tai": 1
+        }
+      ],
+      "note": "南家、北家都能胡西家的 6 條；從西家逆時針最近的是北家，由北家胡",
+      "context": {},
+      "kind": "scoring",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 1,
+      "expectedDelta": {
+        "E": 0,
+        "S": 0,
+        "W": -40,
+        "N": 40
+      },
+      "extraWins": []
+    },
+    {
+      "id": "R03",
+      "group": "宣告與流程",
+      "title": "胡過水：整組聽牌都不能胡",
+      "expectNoWin": true,
+      "note": "南家聽 6、9 條，放過西家的 6 條 → 之後別人打 6 條或 9 條都不能胡；不會隨巡解除",
+      "context": {},
+      "kind": "process",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 0,
+        "W": 0,
+        "N": 0
+      },
+      "tai": [],
+      "extraWins": []
+    },
+    {
+      "id": "R04",
+      "group": "宣告與流程",
+      "title": "胡過水期間自摸也不能胡",
+      "expectNoWin": true,
+      "note": "南家過水後自己摸到 9 條也不能自摸；打出聽牌組裡的牌（6、9 條）不解除",
+      "context": {},
+      "kind": "process",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 0,
+        "W": 0,
+        "N": 0
+      },
+      "tai": [],
+      "extraWins": []
+    },
+    {
+      "id": "R07",
+      "group": "宣告與流程",
+      "title": "打出非聽牌解除胡過水",
+      "expectNoWin": true,
+      "note": "南家過水後打出一張不在聽牌組裡的牌（或加槓）才解除；解除後重新聽牌，別人再打就能胡",
+      "context": {},
+      "kind": "process",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 0,
+        "W": 0,
+        "N": 0
+      },
+      "tai": [],
+      "extraWins": []
+    },
+    {
+      "id": "R08",
+      "group": "宣告與流程",
+      "title": "碰過水",
+      "expectNoWin": true,
+      "note": "放過碰某張牌後，到自己下一次輪到（摸牌或吃碰）前不能再碰同一種牌；下一巡自動解除",
+      "context": {},
+      "kind": "process",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 0,
+        "W": 0,
+        "N": 0
+      },
+      "tai": [],
+      "extraWins": []
+    },
+    {
+      "id": "R05",
+      "group": "宣告與流程",
+      "title": "胡 > 碰 > 吃",
+      "expectNoWin": true,
+      "note": "西家打 5 筒：北家可吃、東家可碰、南家可胡，結果由南家胡",
+      "context": {},
+      "kind": "process",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 0,
+        "W": 0,
+        "N": 0
+      },
+      "tai": [],
+      "extraWins": []
+    },
+    {
+      "id": "R06",
+      "group": "宣告與流程",
+      "title": "流局",
+      "expectNoWin": true,
+      "note": "牌牆剩 16 張無人胡：不付分，莊家連莊、連莊數 +1",
+      "context": {},
+      "kind": "process",
+      "roundWind": "E",
+      "base": 30,
+      "perTai": 10,
+      "expectedTotalTai": 0,
+      "expectedDelta": {
+        "E": 0,
+        "S": 0,
+        "W": 0,
+        "N": 0
+      },
+      "tai": [],
+      "extraWins": []
+    }
+  ]
+}

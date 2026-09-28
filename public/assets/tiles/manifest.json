@@ -1,0 +1,221 @@
+{
+  "tile_size": {
+    "face_w": 60,
+    "face_h": 78,
+    "depth": 6,
+    "viewBox_h": 84
+  },
+  "encoding": "code 0-41 對應規格書第 6.3 節",
+  "tiles": [
+    {
+      "code": 0,
+      "file": "m1",
+      "name": "一萬"
+    },
+    {
+      "code": 1,
+      "file": "m2",
+      "name": "二萬"
+    },
+    {
+      "code": 2,
+      "file": "m3",
+      "name": "三萬"
+    },
+    {
+      "code": 3,
+      "file": "m4",
+      "name": "四萬"
+    },
+    {
+      "code": 4,
+      "file": "m5",
+      "name": "五萬"
+    },
+    {
+      "code": 5,
+      "file": "m6",
+      "name": "六萬"
+    },
+    {
+      "code": 6,
+      "file": "m7",
+      "name": "七萬"
+    },
+    {
+      "code": 7,
+      "file": "m8",
+      "name": "八萬"
+    },
+    {
+      "code": 8,
+      "file": "m9",
+      "name": "九萬"
+    },
+    {
+      "code": 9,
+      "file": "p1",
+      "name": "一筒"
+    },
+    {
+      "code": 10,
+      "file": "p2",
+      "name": "二筒"
+    },
+    {
+      "code": 11,
+      "file": "p3",
+      "name": "三筒"
+    },
+    {
+      "code": 12,
+      "file": "p4",
+      "name": "四筒"
+    },
+    {
+      "code": 13,
+      "file": "p5",
+      "name": "五筒"
+    },
+    {
+      "code": 14,
+      "file": "p6",
+      "name": "六筒"
+    },
+    {
+      "code": 15,
+      "file": "p7",
+      "name": "七筒"
+    },
+    {
+      "code": 16,
+      "file": "p8",
+      "name": "八筒"
+    },
+    {
+      "code": 17,
+      "file": "p9",
+      "name": "九筒"
+    },
+    {
+      "code": 18,
+      "file": "s1",
+      "name": "一條"
+    },
+    {
+      "code": 19,
+      "file": "s2",
+      "name": "二條"
+    },
+    {
+      "code": 20,
+      "file": "s3",
+      "name": "三條"
+    },
+    {
+      "code": 21,
+      "file": "s4",
+      "name": "四條"
+    },
+    {
+      "code": 22,
+      "file": "s5",
+      "name": "五條"
+    },
+    {
+      "code": 23,
+      "file": "s6",
+      "name": "六條"
+    },
+    {
+      "code": 24,
+      "file": "s7",
+      "name": "七條"
+    },
+    {
+      "code": 25,
+      "file": "s8",
+      "name": "八條"
+    },
+    {
+      "code": 26,
+      "file": "s9",
+      "name": "九條"
+    },
+    {
+      "code": 27,
+      "file": "wind_e",
+      "name": "東"
+    },
+    {
+      "code": 28,
+      "file": "wind_s",
+      "name": "南"
+    },
+    {
+      "code": 29,
+      "file": "wind_w",
+      "name": "西"
+    },
+    {
+      "code": 30,
+      "file": "wind_n",
+      "name": "北"
+    },
+    {
+      "code": 31,
+      "file": "dragon_red",
+      "name": "紅中"
+    },
+    {
+      "code": 32,
+      "file": "dragon_green",
+      "name": "青發"
+    },
+    {
+      "code": 33,
+      "file": "dragon_white",
+      "name": "白板"
+    },
+    {
+      "code": 34,
+      "file": "flower_1",
+      "name": "春"
+    },
+    {
+      "code": 35,
+      "file": "flower_2",
+      "name": "夏"
+    },
+    {
+      "code": 36,
+      "file": "flower_3",
+      "name": "秋"
+    },
+    {
+      "code": 37,
+      "file": "flower_4",
+      "name": "冬"
+    },
+    {
+      "code": 38,
+      "file": "flower_5",
+      "name": "梅"
+    },
+    {
+      "code": 39,
+      "file": "flower_6",
+      "name": "蘭"
+    },
+    {
+      "code": 40,
+      "file": "flower_7",
+      "name": "竹"
+    },
+    {
+      "code": 41,
+      "file": "flower_8",
+      "name": "菊"
+    }
+  ]
+}
