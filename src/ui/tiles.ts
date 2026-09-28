@@ -15,7 +15,7 @@ export const SKINS: { id: Skin; name: string; desc: string }[] = [
   { id: 'classic', name: '預設', desc: '綠色牌背・綠色牌桌' },
   { id: 'yellow', name: '黃色', desc: '黃色牌背（包子寶寶）・藍色牌桌' },
   { id: 'black', name: '黑色', desc: '黑色牌背（貓頭鷹）・酒紅牌桌' },
-  { id: 'chips', name: '薯片', desc: '檸檬黃牌背（薯片妹）・粉紅牌桌' },
+  { id: 'chips', name: '薯片', desc: '檸檬黃牌背（薯片妹）・海軍藍牌桌' },
 ];
 
 const BASE = `${import.meta.env.BASE_URL}assets/`;

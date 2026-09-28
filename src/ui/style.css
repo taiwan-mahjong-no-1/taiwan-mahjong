@@ -358,8 +358,8 @@ html[data-skin="yellow"] { --felt: #2a6aa8; --felt-dark: #16406e; --bg1: #3d8fd1
 html[data-skin="black"] { --felt: #651c2a; --felt-dark: #3a0d17; --bg1: #8a2a3a; --bg2: #651c2a; --bg3: #3a0d17; --panel: rgba(30, 8, 14, 0.84); }
 html[data-skin="yellow"] .dialog { background: #10263f; }
 html[data-skin="black"] .dialog { background: #2a0b13; }
-html[data-skin="chips"] { --felt: #f27aa5; --felt-dark: #c24a78; --bg1: #ff9ec0; --bg2: #f27aa5; --bg3: #c24a78; --panel: rgba(90, 20, 50, 0.82); }
-html[data-skin="chips"] .dialog { background: #5a1a36; }
+html[data-skin="chips"] { --felt: #34518f; --felt-dark: #172a55; --bg1: #4f6fb8; --bg2: #34518f; --bg3: #172a55; --panel: rgba(12, 22, 50, 0.84); }
+html[data-skin="chips"] .dialog { background: #14234a; }
 .home-links { display: flex; justify-content: center; gap: 18px; }
 .skin-dialog { max-width: min(96vw, 720px); text-align: center; }
 .skin-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }

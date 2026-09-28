@@ -352,7 +352,7 @@ TABLES = {
     "classic": ("#1f8a57", "#156b43", "#0b3f27", "#6b4423", "#c9a060"),
     "yellow": ("#3d8fd1", "#2a6aa8", "#16406e", "#f0c75e", "#fff2c2"),
     "black": ("#8a2a3a", "#651c2a", "#3a0d17", "#1c1c1f", "#d8b36a"),
-    "chips": ("#ff9ec0", "#f27aa5", "#c24a78", "#fff3b0", "#ffffff"),
+    "chips": ("#4f6fb8", "#34518f", "#172a55", "#fff3b0", "#ffffff"),
 }
 def table_svg(c1, c2, c3, wood, trim):
     TW, TH = 1920, 1080
