@@ -1,5 +1,7 @@
 /**
  * 語音：出牌念牌名，吃碰槓胡等動作念出來（錄音檔在 public/assets/voice）。
+ * 可切換語音版本（跟牌的風格一樣，每位玩家自己選）；其他版本放在 public/assets/voice/<版本>/，
+ * 該版本沒錄到的語音（放槍、流局、豹子等）改用預設版本的錄音。
  * 每位玩家在自己的畫面開關、調音量，存在自己的瀏覽器；只根據自己收到的畫面變化播放，
  * 不需要房主另外傳送。
  */
@@ -7,18 +9,29 @@ import type { PlayerView } from '../engine/game';
 import { kindOf } from '../engine/game';
 import { FILES } from './tiles';
 
-export interface VoiceSettings { on: boolean; volume: number }
+export type VoicePack = 'default' | 'recorded';
+export interface VoiceSettings { on: boolean; volume: number; pack: VoicePack }
+
+const TILE_KEYS = FILES.slice(0, 34);
+/** 語音版本；keys 為這個版本有錄的語音，其餘用預設版本 */
+export const VOICE_PACKS: { id: VoicePack; name: string; keys: Set<string> | null }[] = [
+  { id: 'default', name: '預設', keys: null },
+  { id: 'recorded', name: '自錄', keys: new Set([...TILE_KEYS, 'chi', 'pon', 'kong', 'ting', 'hule', 'tsumo', 'flower']) },
+];
+const isPack = (p: unknown): p is VoicePack => VOICE_PACKS.some((x) => x.id === p);
 const KEY = 'taiwan-mahjong:voice';
 const BASE = `${import.meta.env.BASE_URL}assets/voice/`;
 
 export function loadVoice(): VoiceSettings {
   try {
     const v = JSON.parse(localStorage.getItem(KEY) ?? 'null');
-    if (v && typeof v.on === 'boolean' && typeof v.volume === 'number') return v;
+    if (v && typeof v.on === 'boolean' && typeof v.volume === 'number') {
+      return { on: v.on, volume: v.volume, pack: isPack(v.pack) ? v.pack : 'default' };
+    }
   } catch {
     /* 讀不到就用預設 */
   }
-  return { on: true, volume: 0.8 };
+  return { on: true, volume: 0.8, pack: 'default' };
 }
 
 export function saveVoice(v: VoiceSettings) {
@@ -39,9 +52,11 @@ let playing = false;
 let settings = loadVoice();
 
 export function setVoice(v: VoiceSettings) {
+  const packChanged = v.pack !== settings.pack;
   settings = v;
   saveVoice(v);
-  if (!v.on) queue = [];
+  if (!v.on || packChanged) queue = [];
+  if (packChanged) preloadVoice();
 }
 
 export function getVoice(): VoiceSettings {
@@ -57,14 +72,21 @@ export function unlockAudio() {
   if (ctx.state === 'suspended') void ctx.resume();
 }
 
+/** 目前版本的錄音網址；這個版本沒錄的用預設版本 */
+function urlOf(key: string): string {
+  const pack = VOICE_PACKS.find((x) => x.id === settings.pack);
+  return pack?.keys?.has(key) ? `${BASE}${pack.id}/${key}.mp3` : `${BASE}${key}.mp3`;
+}
+
 function load(key: string): Promise<AudioBuffer | null> {
-  let p = buffers.get(key);
+  const url = urlOf(key);
+  let p = buffers.get(url);
   if (!p) {
-    p = fetch(`${BASE}${key}.mp3`)
+    p = fetch(url)
       .then((r) => (r.ok ? r.arrayBuffer() : Promise.reject(new Error(String(r.status)))))
       .then((b) => ctx!.decodeAudioData(b))
       .catch(() => null);
-    buffers.set(key, p);
+    buffers.set(url, p);
   }
   return p;
 }
@@ -72,7 +94,7 @@ function load(key: string): Promise<AudioBuffer | null> {
 /** 開局先載入常用的語音，第一次播放不會延遲 */
 export function preloadVoice() {
   if (!ctx) return;
-  for (const f of FILES.slice(0, 34)) void load(f);
+  for (const f of TILE_KEYS) void load(f);
   for (const k of ['chi', 'pon', 'kong', 'ting', 'hule', 'fangqiang', 'tsumo', 'flower']) void load(k);
 }
 

@@ -440,6 +440,8 @@ html[data-skin="chips"] { --wall2: #ffe83d; --wall1: rgba(255, 232, 61, 0.5); }
 /* 語音設定 */
 .icon-btn.off { opacity: 0.55; text-decoration: line-through; }
 .voice-dialog .seg { display: flex; justify-content: center; margin: 10px auto; max-width: 220px; }
+.voice-dialog .voice-pack { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 8px 0; color: var(--muted); }
+.voice-dialog .voice-pack .seg { margin: 0; min-width: 160px; }
 .voice-dialog .volume { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 8px 0; color: var(--muted); }
 .voice-dialog input[type="range"] { width: min(240px, 50vw); }
 

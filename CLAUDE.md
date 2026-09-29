@@ -33,6 +33,7 @@
 | `public/assets/` | 牌面、按鈕、骰子、牌桌 SVG；`tiles/manifest.json` 對照牌種編號 |
 | `tools/gen_assets.py` | 美術素材產生器；`SKIN=yellow`／`black`／`chips` 產生其他風格到 `build/skins/`，再複製到 `public/assets/skins/` |
 | `src/ui/tiles.ts` | 牌面圖檔路徑與風格切換（`setSkin`，每位玩家各自選、存在自己的瀏覽器） |
+| `src/ui/voice.ts` | 語音播放；語音版本 `VOICE_PACKS`（預設在 `public/assets/voice/`，其他版本在 `public/assets/voice/<版本>/`，沒錄到的語音用預設版本） |
 
 ## 規則引擎慣例
 

@@ -11,7 +11,7 @@ import { stackCount, stackPosition, STACKS_PER_WALL, TOTAL_STACKS } from '../eng
 import { Advice, suggest } from '../ai/ai';
 import { createRng } from '../engine/rng';
 import { AssistLevel, loadAssist, saveAssist } from './assist';
-import { announce, getVoice, preloadVoice, say, setVoice, unlockAudio, VoiceSnap, voiceSnap } from './voice';
+import { announce, getVoice, preloadVoice, say, setVoice, unlockAudio, VOICE_PACKS, VoicePack, VoiceSnap, voiceSnap } from './voice';
 import { canFullscreen, isFullscreen, isStandalone, toggleFullscreen } from './fullscreen';
 
 export interface TableHandlers {
@@ -169,6 +169,7 @@ export class TableScreen {
         <h2>語音</h2>
         <p class="muted small">出牌念牌名，吃、碰、槓、聽、胡、自摸、補花也會念出來。只影響你自己的畫面。</p>
         <div class="seg"><button class="seg-btn${vs.on ? ' on' : ''}" data-act="voiceon:1">開</button><button class="seg-btn${vs.on ? '' : ' on'}" data-act="voiceon:0">關</button></div>
+        <div class="voice-pack"><span>版本</span><div class="seg">${VOICE_PACKS.map((p) => `<button class="seg-btn${vs.pack === p.id ? ' on' : ''}" data-act="voicepack:${p.id}">${p.name}</button>`).join('')}</div></div>
         <label class="volume">音量 <input type="range" min="0" max="100" step="5" value="${Math.round(vs.volume * 100)}" data-voice-volume></label>
         <div class="dialog-buttons"><button class="btn" data-act="voicetest">試聽</button><button class="btn" data-act="closevoice">關閉</button></div></div></div>`);
     }
@@ -712,6 +713,10 @@ export class TableScreen {
       case 'voiceon':
         setVoice({ ...getVoice(), on: arg === '1' });
         if (arg === '1') say(['m1', 'pon']);
+        return this.render(v);
+      case 'voicepack':
+        setVoice({ ...getVoice(), pack: arg as VoicePack });
+        if (getVoice().on) say(['wind_e', 'pon', 'tsumo']);
         return this.render(v);
       case 'voicetest': return say(['wind_e', 'pon', 'tsumo']);
       case 'closeassist': this.ui.showAssist = false; return this.render(v);
