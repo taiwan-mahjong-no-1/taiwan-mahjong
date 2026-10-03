@@ -26,6 +26,8 @@ export class ChatPanel {
   /** 看過的最後一則；之後別人發的算未讀 */
   private seenId = 0;
   private lastSent = 0;
+  /** 視窗開著時定時調整高度，不蓋到自己的手牌與吃碰槓按鈕 */
+  private fitTimer?: ReturnType<typeof setInterval>;
 
   constructor(private send: (text: string) => void) {
     this.el = document.createElement('div');
@@ -69,7 +71,23 @@ export class ChatPanel {
   }
 
   destroy() {
+    clearInterval(this.fitTimer);
     this.el.remove();
+  }
+
+  /** 牌局中：視窗底部停在自己手牌區（含吃碰槓按鈕、提示）上方；等待畫面不限制 */
+  private fit() {
+    const panel = this.el.querySelector<HTMLElement>('.chat-panel')!;
+    const me = document.querySelector<HTMLElement>('.table .me');
+    if (!me) {
+      panel.style.bottom = '';
+      return;
+    }
+    const top = me.getBoundingClientRect().top;
+    // .me 本身撐滿整列，從第一個看得到的子元素算起
+    const first = [...me.children].map((c) => c.getBoundingClientRect()).filter((r) => r.height > 0);
+    const edge = first.length ? Math.min(...first.map((r) => r.top)) : top;
+    panel.style.bottom = `${Math.max(8, window.innerHeight - edge + 6)}px`;
   }
 
   private submit(raw: string): boolean {
@@ -84,7 +102,10 @@ export class ChatPanel {
   private setOpen(open: boolean) {
     this.open = open;
     this.el.querySelector<HTMLElement>('.chat-panel')!.hidden = !open;
+    clearInterval(this.fitTimer);
     if (open) {
+      this.fit();
+      this.fitTimer = setInterval(() => this.fit(), 300);
       this.markSeen();
       // 手機打開時不自動跳出鍵盤，電腦直接可以打字
       if (matchMedia('(pointer: fine)').matches) this.el.querySelector<HTMLInputElement>('.chat-input')!.focus();

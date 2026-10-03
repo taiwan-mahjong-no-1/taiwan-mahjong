@@ -465,7 +465,8 @@ body:has(.topbar) #chat .chat-fab { display: none; }
   background: #e53935; color: #fff; font-size: 12px; font-weight: 700; line-height: 20px; text-align: center;
 }
 #chat .chat-panel {
-  position: fixed; top: calc(1.2vh + 42px); right: 1.2vw; bottom: 1.2vh; z-index: 16; width: min(340px, 92vw);
+  position: fixed; top: calc(1.2vh + 42px); right: 1.2vw; bottom: 1.2vh; z-index: 16; width: min(300px, 40vw);
+  min-height: 150px;
   display: flex; flex-direction: column; border-radius: 14px; border: 1px solid rgba(228, 192, 122, 0.5);
   background: var(--panel); backdrop-filter: blur(6px); box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45); overflow: hidden;
 }
@@ -504,3 +505,4 @@ body:has(.topbar) #chat .chat-fab { display: none; }
   .topbar { gap: 4px; }
   .topbar .icon-btn { height: 28px; min-width: 30px; padding: 0 7px; font-size: 12px; }
 }
+@media (max-width: 600px) { #chat .chat-panel { width: 92vw; } }
