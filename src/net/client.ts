@@ -3,7 +3,7 @@
  */
 import { Action } from '../engine/game';
 import { TableView } from '../game/controller';
-import { LobbyState, Link, ToClient, ToHost, You } from './protocol';
+import { CHAT_KEEP, ChatMsg, LobbyState, Link, ToClient, ToHost, You } from './protocol';
 
 export type ClientStatus =
   | 'connecting' // 第一次連線中
@@ -31,6 +31,8 @@ export class ClientRoom {
   view: TableView | null = null;
   you: You | null = null;
   message: string | null = null;
+  chat: ChatMsg[] = [];
+  private chatListeners = new Set<() => void>();
   private link: Link<ToClient, ToHost> | null = null;
   private listeners = new Set<() => void>();
   private retryTimer?: ReturnType<typeof setTimeout>;
@@ -48,6 +50,16 @@ export class ClientRoom {
   subscribe(fn: () => void) {
     this.listeners.add(fn);
     return () => this.listeners.delete(fn);
+  }
+
+  /** 聊天有新訊息時通知（不會重畫牌桌） */
+  onChat(fn: () => void) {
+    this.chatListeners.add(fn);
+    return () => this.chatListeners.delete(fn);
+  }
+
+  sendChat(text: string) {
+    this.link?.send({ t: 'chat', text });
   }
 
   start() {
@@ -72,6 +84,7 @@ export class ClientRoom {
     this.link?.send({ t: 'bye' });
     this.link?.close();
     this.listeners.clear();
+    this.chatListeners.clear();
   }
 
   private changed() {
@@ -116,6 +129,12 @@ export class ClientRoom {
   }
 
   private onMessage(m: ToClient) {
+    if (m.t === 'chat' || m.t === 'chatLog') {
+      if (m.t === 'chatLog') this.chat = m.msgs;
+      else if (!this.chat.some((c) => c.id === m.msg.id)) this.chat = [...this.chat, m.msg].slice(-CHAT_KEEP);
+      for (const fn of this.chatListeners) fn();
+      return;
+    }
     switch (m.t) {
       case 'lobby':
       case 'view':

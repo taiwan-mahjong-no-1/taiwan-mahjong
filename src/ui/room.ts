@@ -11,6 +11,7 @@ import { Link } from '../net/protocol';
 import { scanQr, showQrDialog } from './qr';
 import { LobbyState, newRoomId, RoomSettings, ToClient, ToHost } from '../net/protocol';
 import { TableScreen } from './table';
+import { ChatPanel } from './chat';
 import { settingsSummary } from './settings';
 import { esc } from './tiles';
 
@@ -163,6 +164,8 @@ async function runHost(ctx: RoomContext, host: HostRoom, resumed = false, offlin
   }
 
   let table: TableScreen | null = null;
+  const chat = new ChatPanel((text) => host.hostChat(text));
+  const unsubChat = host.onChat(() => chat.set(host.chatFor(host.host)));
   const endRoom = () => {
     host.close();
     peer.close();
@@ -191,7 +194,7 @@ async function runHost(ctx: RoomContext, host: HostRoom, resumed = false, offlin
         leave: () => confirmBox('結束房間？', '所有玩家都會離開這個房間。', '結束房間', endRoom),
         restart: () => host.restart(),
       }, {
-        tingHint: ctx.tingHint, role: 'host', roomId: host.roomId,
+        tingHint: ctx.tingHint, role: 'host', roomId: host.roomId, chat,
         assistAllowed: () => host.settings.allowAssist !== false,
         // 離線房間：牌局中也能讓斷線的玩家重新掃描回來
         extra: offline ? { label: '加人', onClick: () => void inviteFlow(host) } : undefined,
@@ -204,6 +207,8 @@ async function runHost(ctx: RoomContext, host: HostRoom, resumed = false, offlin
   render();
   ctx.setCleanup(() => {
     unsub();
+    unsubChat();
+    chat.destroy();
     table?.destroy();
   });
 }
@@ -230,6 +235,9 @@ export function joinRoom(ctx: RoomContext, roomId: string, offlineLink?: Link<To
   }, offline ? { giveUpMs: -1, lostMessage: '和房主的連線中斷了。請房主按「加人」產生新的 QR code，再按「重新掃描」回到原座位。' } : {});
   let table: TableScreen | null = null;
   let everJoined = false;
+  // 進到房間後才出現聊天
+  let chat: ChatPanel | null = null;
+  const unsubChat = client.onChat(() => chat?.set(client.chat));
   const leave = () => {
     client.leave();
     setHash(null);
@@ -249,7 +257,13 @@ export function joinRoom(ctx: RoomContext, roomId: string, offlineLink?: Link<To
   const render = () => {
     const st = client.status;
     if (st === 'joined') everJoined = true;
+    if (st === 'joined' && !chat) {
+      chat = new ChatPanel((text) => client.sendChat(text));
+      chat.set(client.chat);
+    }
     if (st === 'closed') {
+      chat?.destroy();
+      chat = null;
       netOverlay('');
       table?.destroy();
       table = null;
@@ -296,7 +310,7 @@ export function joinRoom(ctx: RoomContext, roomId: string, offlineLink?: Link<To
         leave: () => confirmBox('離開房間？', offline ? '離開後由 AI 代打，重新掃描房主的 QR code 可以再回來。' : '離開後由 AI 代打，用同一個網址可以再回來。', '離開', leave),
         restart: () => undefined,
       }, {
-        tingHint: ctx.tingHint, role: 'guest', roomId, spectator: !!client.you?.spectator,
+        tingHint: ctx.tingHint, role: 'guest', roomId, spectator: !!client.you?.spectator, chat: chat ?? undefined,
         // 房主的設定跟著房間狀態一起傳來
         assistAllowed: () => client.lobby?.settings.allowAssist !== false,
       });
@@ -308,6 +322,8 @@ export function joinRoom(ctx: RoomContext, roomId: string, offlineLink?: Link<To
   client.start();
   ctx.setCleanup(() => {
     unsub();
+    unsubChat();
+    chat?.destroy();
     netOverlay('');
     table?.destroy();
   });

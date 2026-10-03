@@ -12,6 +12,7 @@ import { Advice, suggest } from '../ai/ai';
 import { createRng } from '../engine/rng';
 import { AssistLevel, loadAssist, saveAssist } from './assist';
 import { announce, getVoice, preloadVoice, say, setVoice, unlockAudio, VOICE_PACKS, VoicePack, VoiceSnap, voiceSnap } from './voice';
+import { chatButtonHtml } from './chat';
 import { canFullscreen, isFullscreen, isStandalone, toggleFullscreen } from './fullscreen';
 
 export interface TableHandlers {
@@ -73,6 +74,8 @@ export class TableScreen {
       /** 房主是否允許輔助模式（AI 提示）；省略表示允許 */
       assistAllowed?: () => boolean;
       extra?: { label: string; onClick: () => void };
+      /** 開房聊天（單人模式沒有） */
+      chat?: { unread: number; toggle(): void };
     },
   ) {
     root.addEventListener('click', (e) => this.onClick(e));
@@ -314,6 +317,7 @@ export class TableScreen {
       <button class="icon-btn${getVoice().on ? '' : ' off'}" data-act="voice" title="語音">語音</button>
       ${this.opts.spectator || !this.assistAllowed() ? '' : `<button class="icon-btn${this.assist !== 'off' ? ' on' : ''}" data-act="assist" title="輔助模式：AI 建議">提示</button>`}
       <button class="icon-btn" data-act="scores" title="計分總表">計分</button>
+      ${this.opts.chat ? chatButtonHtml(this.opts.chat.unread) : ''}
       ${this.opts.extra ? `<button class="icon-btn" data-act="extra">${esc(this.opts.extra.label)}</button>` : ''}
       ${canFullscreen() && !isStandalone() ? `<button class="icon-btn" data-act="fullscreen" title="全螢幕">${isFullscreen() ? '縮小' : '全螢幕'}</button>` : ''}
       ${this.opts.role === 'guest' ? '' : `<button class="icon-btn" data-act="pause" title="${v.paused ? '繼續' : '暫停'}">${v.paused ? '▶' : 'Ⅱ'}</button>`}
@@ -709,6 +713,7 @@ export class TableScreen {
       case 'skin': this.ui.showSkin = true; return this.render(v);
       case 'assist': this.ui.showAssist = true; return this.render(v);
       case 'voice': this.ui.showVoice = true; return this.render(v);
+      case 'chat': return this.opts.chat?.toggle();
       case 'closevoice': this.ui.showVoice = false; return this.render(v);
       case 'voiceon':
         setVoice({ ...getVoice(), on: arg === '1' });

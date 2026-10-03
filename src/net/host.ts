@@ -6,7 +6,7 @@ import { Action, DEFAULT_RULES, GameRules, GameState } from '../engine/game';
 import { DEFAULT_SCORE_RULES } from '../engine/settlement';
 import { Wind } from '../engine/tiles';
 import { SeatInfo, TableController, TableView } from '../game/controller';
-import { LobbyState, Link, newToken, RoomSettings, ToClient, ToHost, You } from './protocol';
+import { CHAT_GAP_MS, CHAT_KEEP, ChatMsg, cleanChat, LobbyState, Link, newToken, RoomSettings, ToClient, ToHost, You } from './protocol';
 
 export interface Member {
   name: string;
@@ -16,6 +16,8 @@ export interface Member {
   spectator: boolean;
   seat: Wind | null;
   link?: Link<ToHost, ToClient>;
+  /** 上一次發言時間（防洗版，不存快照） */
+  lastChatAt?: number;
 }
 
 /** 房主重開分頁時用來恢復的快照（存在房主瀏覽器） */
@@ -57,6 +59,10 @@ export class HostRoom {
   members: Member[] = [];
   ctl: TableController | null = null;
   private listeners = new Set<() => void>();
+  /** 聊天紀錄（只放在記憶體，房主重開分頁後清空） */
+  chat: ChatMsg[] = [];
+  private chatListeners = new Set<() => void>();
+  private nextChatId = 1;
   private unsubCtl: (() => void) | null = null;
   private random: () => number;
 
@@ -86,6 +92,22 @@ export class HostRoom {
   subscribe(fn: () => void) {
     this.listeners.add(fn);
     return () => this.listeners.delete(fn);
+  }
+
+  /** 聊天有新訊息時通知（房主自己的畫面用；不會重畫牌桌） */
+  onChat(fn: () => void) {
+    this.chatListeners.add(fn);
+    return () => this.chatListeners.delete(fn);
+  }
+
+  /** 某位成員看到的聊天紀錄（標出哪些是自己發的） */
+  chatFor(m: Member): ChatMsg[] {
+    return this.chat.map((c) => this.chatMsgFor(c, m));
+  }
+
+  /** 房主發言 */
+  hostChat(text: string) {
+    this.chatFrom(this.host, text);
   }
 
   lobby(): LobbyState {
@@ -126,6 +148,7 @@ export class HostRoom {
       this.members.push(m);
     }
     this.changed();
+    if (this.chat.length) link.send({ t: 'chatLog', msgs: this.chatFor(m) });
     return m;
   }
 
@@ -133,6 +156,10 @@ export class HostRoom {
     if (msg.t === 'bye') {
       m.link?.close();
       this.onLeave(m);
+      return;
+    }
+    if (msg.t === 'chat') {
+      this.chatFrom(m, msg.text);
       return;
     }
     if (!this.ctl || m.seat === null) return;
@@ -206,6 +233,7 @@ export class HostRoom {
     this.unsubCtl?.();
     this.ctl?.destroy();
     this.listeners.clear();
+    this.chatListeners.clear();
   }
 
   hostView(): TableView | null {
@@ -214,6 +242,28 @@ export class HostRoom {
   }
 
   // ---------------------------------------------------------------- 內部
+
+  private chatMsgFor(c: ChatMsg, m: Member): ChatMsg {
+    return { ...c, mine: this.chatOwners.get(c.id) === m.token };
+  }
+
+  /** 每則訊息是誰發的（用代碼對應，不傳給其他玩家） */
+  private chatOwners = new Map<number, string>();
+
+  private chatFrom(m: Member, raw: string) {
+    const text = cleanChat(raw);
+    const now = Date.now();
+    if (!text || (m.lastChatAt !== undefined && now - m.lastChatAt < CHAT_GAP_MS)) return;
+    m.lastChatAt = now;
+    const msg: ChatMsg = { id: this.nextChatId++, name: m.name, role: m.isHost ? 'host' : m.spectator ? 'spectator' : 'player', text, at: now };
+    this.chat.push(msg);
+    this.chatOwners.set(msg.id, m.token);
+    if (this.chat.length > CHAT_KEEP) this.chatOwners.delete(this.chat.shift()!.id);
+    for (const x of this.members) {
+      if (x.link && x.connected) x.link.send({ t: 'chat', msg: this.chatMsgFor(msg, x) });
+    }
+    for (const fn of this.chatListeners) fn();
+  }
 
   private startController(seats: SeatInfo[], initial?: GameState) {
     this.unsubCtl?.();

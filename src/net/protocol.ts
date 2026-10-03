@@ -43,18 +43,43 @@ export interface You {
   spectator: boolean;
 }
 
+/** 聊天訊息（開房時才有；房主轉發給房間裡每個人，旁觀者也可以發言） */
+export interface ChatMsg {
+  id: number;
+  name: string;
+  role: 'host' | 'player' | 'spectator';
+  text: string;
+  at: number;
+  /** 是不是收到這則的人自己發的（房主依收件人填） */
+  mine?: boolean;
+}
+
+/** 聊天訊息最多幾個字、房主保留幾則紀錄、同一人兩則之間至少隔多久 */
+export const CHAT_MAX_LEN = 60;
+export const CHAT_KEEP = 100;
+export const CHAT_GAP_MS = 800;
+
+/** 整理聊天文字：去頭尾空白、合併連續空白、限制長度 */
+export const cleanChat = (raw: unknown) =>
+  typeof raw === 'string' ? raw.replace(/\s+/g, ' ').trim().slice(0, CHAT_MAX_LEN) : '';
+
 export type ToHost =
   | { t: 'hello'; name: string; token?: string }
   | { t: 'action'; action: Action }
   | { t: 'takeBack' }
   /** 聽牌自動摸打開關（只影響自己，別人看不到） */
   | { t: 'autoTing'; on: boolean }
+  | { t: 'chat'; text: string }
   | { t: 'bye' };
 
 export type ToClient =
   | { t: 'lobby'; lobby: LobbyState; you: You }
   | { t: 'view'; view: TableView; lobby: LobbyState; you: You }
   | { t: 'error'; message: string }
+  /** 一則新的聊天訊息 */
+  | { t: 'chat'; msg: ChatMsg }
+  /** 加入或重新連線時，補上之前的聊天紀錄 */
+  | { t: 'chatLog'; msgs: ChatMsg[] }
   | { t: 'closed'; reason: string };
 
 /** 一條雙向連線（PeerJS 或測試用的記憶體連線） */

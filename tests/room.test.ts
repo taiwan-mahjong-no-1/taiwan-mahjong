@@ -169,4 +169,37 @@ describe('房主設定：AI 提示', () => {
     await until(() => a.client.lobby !== null);
     expect(a.client.lobby!.settings.allowAssist).toBe(false);
   });
+
+  it('聊天：房主轉發給所有人（含旁觀者），標出自己發的；太長截斷、太快丟掉；重連補紀錄', async () => {
+    const host = makeRoom();
+    const a = join(host, '小明');
+    join(host, '阿華');
+    join(host, '小美');
+    const spec = join(host, '路人');
+    await until(() => spec.client.you?.spectator === true);
+    a.client.sendChat('  哈囉   大家 ');
+    await until(() => spec.client.chat.length === 1);
+    expect(spec.client.chat[0]).toMatchObject({ name: '小明', role: 'player', text: '哈囉 大家', mine: false });
+    expect(a.client.chat[0].mine).toBe(true);
+    expect(JSON.stringify(spec.client.chat)).not.toContain(host.members[1].token);
+    a.client.sendChat('太快了');
+    spec.client.sendChat('x'.repeat(100));
+    await until(() => host.chat.length === 2);
+    await wait(20);
+    expect(host.chat.map((c) => c.text)).toEqual(['哈囉 大家', 'x'.repeat(60)]);
+    expect(host.chat[1].role).toBe('spectator');
+    host.hostChat('開始囉');
+    await until(() => a.client.chat.length === 3);
+    expect(a.client.chat[2]).toMatchObject({ name: '房主', role: 'host', mine: false });
+    expect(host.chatFor(host.host)[2].mine).toBe(true);
+    // 牌局中斷線重連後拿到完整紀錄，仍認得自己發的
+    host.start();
+    await until(() => a.client.view !== null);
+    a.client.chat = [];
+    a.drop();
+    await until(() => a.client.chat.length === 3);
+    expect(a.client.chat[0].mine).toBe(true);
+    host.close();
+  });
 });
+
